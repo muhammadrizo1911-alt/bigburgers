@@ -1,96 +1,114 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIG BURGERS  ── Restoran, Yoqimli, Sifatli, Halol </title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="img/bigburgers.png" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+user-scalable=no">
+<title>BIG BURGERS — Restorani</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" atype="images/imglogo.png" href="images/imglogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <a href="#" class="logo">
-            <span>BIG BURGERS</span>
-        </a>
-        <div class="right-section">
-            <button class="cart-btn" onclick="openCart()">
-                <span class="cart-icon">🛒</span>
-                <span class="cart-count">0</span>
-            </button>
-            <div class="profile-menu">
-                <button class="profile-btn" onclick="toggleProfileMenu()">
-                    <span class="profile-icon">👤</span>
-                    <span>Profil</span>
-                </button>
-                <div class="profile-dropdown" id="profileDropdown">
-                    <a href="#" class="dropdown-item">📋 Mening buyurtmalarim</a>
-                    <a href="#" class="dropdown-item">❤️ Sevimlilar</a>
-                    <a href="#" class="dropdown-item">⚙️ Sozlamalar</a>
-                    <a href="#" class="dropdown-item">🚪 Chiqish</a>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Main Content with top padding -->
-    <div class="pt-8 px-4">
-        <!-- Horizontal Scroll Categories -->
-        <div class="overflow-x-auto pb-6 hide-scrollbar">
-            <div class="flex gap-3 min-w-max">
-            <!-- Active category -->
-            <button onclick="selectCategory(this)" 
-                    class="category-card active-nav flex-shrink-0 bg-white shadow-md rounded-3xl px-6 py-4 flex items-center gap-x-3 border-2 border-orange-400">
-                <div class="w-12 h-12 image-placeholder rounded-2xl flex items-center justify-center text-4xl shadow-inner">🛒</div>
-                <div class="text-left">
-                    <span class="block text-orange-600 font-bold text-lg">Yangilar</span>
-                    <span class="text-xs text-orange-400">4 ta yangi</span>
-                </div>
-            </button>
-            
-            <!-- Other categories -->
-            <button onclick="selectCategory(this)" 
-                    class="category-card flex-shrink-0 bg-white shadow-md rounded-3xl px-6 py-4 flex items-center gap-x-3">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner">🍔</div>
-                <div class="text-left">
-                    <span class="block text-gray-700 font-medium text-lg">Ganburgerlar</span>
-                </div>
-            </button>
-            
-            <button onclick="selectCategory(this)" 
-                    class="category-card flex-shrink-0 bg-white shadow-md rounded-3xl px-6 py-4 flex items-center gap-x-3">
-                <div class="w-12 h-12 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner">🍕</div>
-                <div class="text-left">
-                    <span class="block text-gray-700 font-medium text-lg">Burgerlar</span>
-                </div>
-            </button>
-            
-            <button onclick="selectCategory(this)" 
-                    class="category-card flex-shrink-0 bg-white shadow-md rounded-3xl px-6 py-4 flex items-center gap-x-3">
-                <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner">🌭</div>
-                <div class="text-left">
-                    <span class="block text-gray-700 font-medium text-lg">Hot-Doklar</span>
-                </div>
-            </button>
-            
-            <button onclick="selectCategory(this)" 
-                    class="category-card flex-shrink-0 bg-white shadow-md rounded-3xl px-6 py-4 flex items-center gap-x-3">
-                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner">🥪</div>
-                <div class="text-left">
-                    <span class="block text-gray-700 font-medium text-lg">Sendvichlar</span>
-                </div>
-            </button>
-        </div>
+<!-- HEADER -->
+<header>
+  <div>
+    <div class="logo-text">BIG BURGERS</div>
+    <div class="logo-sub">Premium Restaurant</div>
+  </div>
+  <button class="cart-btn" onclick="openCart()">
+    <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png"
+         alt="Savat"
+         class="cart-icon">
+    Savat
+    <div class="cart-count" id="cartCount">0</div>
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="images/doppi.png"
+       alt="Big Burgers"
+       class="hero-img"
+       onerror="this.style.display='none'">
+</div>
+
+<!-- SENTINEL — sticky categories anchors here -->
+<div id="categoriesSentinel"></div>
+
+<!-- STICKY CATEGORIES BAR -->
+<div class="categories-bar" id="categoriesBar">
+  <div class="categories-scroll" id="categoriesScroll">
+    <div class="cat-chip active" data-id="all" onclick="filterCategory('all', this)">
+      <span class="cat-emoji"></span> Barchasi
     </div>
+  </div>
+</div>
 
-        <!-- Category Grid -->
-        <div id="categoryGrid" class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-        <!-- Will be populated by JS -->
+<!-- PRODUCTS -->
+<div class="products-section" id="productsSection">
+  <div class="loading"><div class="spinner"></div><span>Menyu yuklanmoqda...</span></div>
+</div>
+
+<!-- PRODUCT MODAL (bottom sheet) -->
+<div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+  <div class="modal" style="position:relative">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeProductModal()">✕</button>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-num" id="modalQty">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
         </div>
-        </div>
+      </div>
+      <button class="modal-add-btn" onclick="addFromModal()">
+        🛒 Savatga qo'shish — <span id="modalTotal"></span>
+      </button>
     </div>
+  </div>
+</div>
 
-    <script src="script.js"></script>
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCartOutside(event)">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-title">Savat</div>
+      <button class="modal-close" style="position:static" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty"><div class="empty-icon">🛒</div><p>Savat bo'sh</p></div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <div class="cart-total-label">Jami summa:</div>
+        <div class="cart-total-price" id="cartTotal">0 so'm</div>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>
+        Buyurtma berish 
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL (bottom sheet) -->
+<div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutOutside(event)">
+  <div class="modal checkout-modal" id="checkoutModalInner">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeCheckout()">✕</button>
+    <div class="modal-body" id="checkoutBody"></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
