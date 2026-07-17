@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+user-scalable=no">
+<title>BIG BURGERS — Restorani</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" atype="images/imglogo.png" href="images/imglogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <div class="logo-text">BIG BURGERS</div>
+    <div class="logo-sub">Premium Restaurant</div>
+  </div>
+  <button class="cart-btn" onclick="openCart()">
+    <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png"
+         alt="Savat"
+         class="cart-icon">
+    Savat
+    <div class="cart-count" id="cartCount">0</div>
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="images/doppi.png"
+       alt="Big Burgers"
+       class="hero-img"
+       onerror="this.style.display='none'">
+</div>
+
+<!-- SENTINEL — sticky categories anchors here -->
+<div id="categoriesSentinel"></div>
+
+<!-- STICKY CATEGORIES BAR -->
+<div class="categories-bar" id="categoriesBar">
+  <div class="categories-scroll" id="categoriesScroll">
+    <div class="cat-chip active" data-id="all" onclick="filterCategory('all', this)">
+      <span class="cat-emoji"></span> Barchasi
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-section" id="productsSection">
+  <div class="loading"><div class="spinner"></div><span>Menyu yuklanmoqda...</span></div>
+</div>
+
+<!-- PRODUCT MODAL (bottom sheet) -->
+<div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+  <div class="modal" style="position:relative">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeProductModal()">✕</button>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-num" id="modalQty">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <button class="modal-add-btn" onclick="addFromModal()">
+        🛒 Savatga qo'shish — <span id="modalTotal"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCartOutside(event)">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-title">Savat</div>
+      <button class="modal-close" style="position:static" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty"><div class="empty-icon">🛒</div><p>Savat bo'sh</p></div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <div class="cart-total-label">Jami summa:</div>
+        <div class="cart-total-price" id="cartTotal">0 so'm</div>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>
+        Buyurtma berish 
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL (bottom sheet) -->
+<div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutOutside(event)">
+  <div class="modal checkout-modal" id="checkoutModalInner">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeCheckout()">✕</button>
+    <div class="modal-body" id="checkoutBody"></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
